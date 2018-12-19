@@ -7,3 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 10.times { Item.create!(name: Faker::StarWars.character, description: Faker::StarWars.quote ) }
+
+fruits = %w[Mango Pineapple Passionfruit Durian]
+
+fruits.each{|fruit| Fruit.create(name: fruit, description: "I am a delicious #{fruit}.")}
