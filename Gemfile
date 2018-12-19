@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 # Use respond_to for controllers json
 gem 'responders'
+# React
+gem 'react-rails'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
