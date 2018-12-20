@@ -3,7 +3,8 @@ class Body extends React.Component {
 constructor(props){
   super(props);
   this.state = {
-    fruits: []
+    fruits: [],
+    items: []
   };
 }
 
@@ -11,12 +12,19 @@ componentDidMount(){
   fetch('/api/v1/fruits.json')
     .then((response) => {return response.json()})
     .then((data) => {this.setState({ fruits: data }) });
+
+  fetch('/api/v1/items.json')
+    .then((response) => {return response.json()})
+    .then((data) => {this.setState({ items: data }) });
 }
+
 
 render(){
   return(
     <div>
       <AllFruits fruits={this.state.fruits} />
+      <hr/>
+      <AllItems items={this.state.items} />
     </div>
   )
 }
