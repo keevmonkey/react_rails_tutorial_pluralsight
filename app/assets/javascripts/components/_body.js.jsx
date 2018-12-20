@@ -9,6 +9,27 @@ constructor(props){
 
   this.handleFormSubmit = this.handleFormSubmit.bind(this)
   this.addNewFruit = this.addNewFruit.bind(this)
+  this.handleDelete = this.handleDelete.bind(this)
+  this.deleteFruit = this.deleteFruit.bind(this)
+}
+
+handleDelete(id){
+  fetch('api/v1/fruits/${id}',
+  {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then((response) => {
+    this.deleteFruit(id)
+  })
+}
+
+deleteFruit(id){
+  newFruits = this.state.fruits.filter((fruit) => fruit.id !== id)
+  this.setState({
+    fruits: newFruits
+  })
 }
 
 handleFormSubmit(name, description){
@@ -44,7 +65,7 @@ render(){
   return(
     <div>
       <NewFruit handleFormSubmit={this.handleFormSubmit}/>
-      <AllFruits fruits={this.state.fruits} />
+      <AllFruits fruits={this.state.fruits} handleDelete={this.handleDelete}/>
       <hr/>
       <AllItems items={this.state.items} />
     </div>
