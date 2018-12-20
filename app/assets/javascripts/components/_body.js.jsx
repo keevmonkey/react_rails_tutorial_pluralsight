@@ -78,10 +78,6 @@ componentDidMount(){
   fetch('/api/v1/fruits.json')
     .then((response) => {return response.json()})
     .then((data) => {this.setState({ fruits: data }) });
-
-  fetch('/api/v1/items.json')
-    .then((response) => {return response.json()})
-    .then((data) => {this.setState({ items: data }) });
 }
 
 render(){
@@ -89,8 +85,6 @@ render(){
     <div>
       <NewFruit handleFormSubmit={this.handleFormSubmit}/>
       <AllFruits fruits={this.state.fruits} handleDelete={this.handleDelete} handleUpdate={this.handleUpdate}/>
-      <hr/>
-      <AllItems items={this.state.items} />
     </div>
   )
 }
