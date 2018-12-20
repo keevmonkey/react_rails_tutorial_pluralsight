@@ -8,11 +8,11 @@ constructor(props){
   };
 
   this.handleFormSubmit = this.handleFormSubmit.bind(this)
+  this.addNewFruit = this.addNewFruit.bind(this)
 }
 
 handleFormSubmit(name, description){
   let body = JSON.stringify({fruit: {name: name, description: description} })
-
   fetch('/api/v1/fruits', {
     method: 'POST',
     headers: {
