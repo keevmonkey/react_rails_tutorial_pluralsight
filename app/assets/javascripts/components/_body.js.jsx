@@ -11,6 +11,29 @@ constructor(props){
   this.addNewFruit = this.addNewFruit.bind(this)
   this.handleDelete = this.handleDelete.bind(this)
   this.deleteFruit = this.deleteFruit.bind(this)
+  this.handleUpdate = this.handleUpdate.bind(this)
+  this.updateFruit = this.updateFruit.bind(this)
+}
+
+handleUpdate(fruit){
+  fetch('api/v1/fruits/${fruit.id}',
+  {
+    method: 'PUT',
+    body: JSON.stringify({fruit: fruit}),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then((response) => {
+    this.updateFruit(fruit)
+  })
+}
+
+updateFruit(fruit){
+  let newFruits = this.state.fruits.filter((f) => f.id !== fruit.id)
+  newFruits.push(fruit)
+  this.setState({
+    fruits: newFruits
+  })
 }
 
 handleDelete(id){
@@ -65,7 +88,7 @@ render(){
   return(
     <div>
       <NewFruit handleFormSubmit={this.handleFormSubmit}/>
-      <AllFruits fruits={this.state.fruits} handleDelete={this.handleDelete}/>
+      <AllFruits fruits={this.state.fruits} handleDelete={this.handleDelete} handleUpdate={this.handleUpdate}/>
       <hr/>
       <AllItems items={this.state.items} />
     </div>
